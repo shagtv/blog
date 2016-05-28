@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{% for object in object_list %}
+    <a href="{{ object.get_absolute_url }}">{{ object.title }}</a><br/>
+    {{ object.content }}<br/>
+    {{ object.updated }}<br/>
+    {{ object.timestamp }}<br/>
+{% endfor %}
+</body>
+</html>
