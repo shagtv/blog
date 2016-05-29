@@ -1,15 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
-{% for object in object_list %}
-    <a href="{{ object.get_absolute_url }}">{{ object.title }}</a><br/>
-    {{ object.content }}<br/>
-    {{ object.updated }}<br/>
-    {{ object.timestamp }}<br/>
-{% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+    <div class="col-sm-8 col-sm-offset-2">
+        <h1>{{ title }}</h1>
+        <div class="row">
+            {% for object in object_list %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="trumbnail">
+                            <div class="caption">
+                                {% if object.image %}
+                                    <img src="{{ object.image.url }}" class="img-responsive">
+                                {% endif %}
+                                <h3>
+                                    <a href="{{ object.get_absolute_url }}">{{ object.title }}</a>
+                                    <small>{{ object.timestamp|timesince }}</small>
+                                </h3>
+                                <p>{{ object.content|linebreaks|truncatechars:120 }}</p>
+                                <p><a href="#" class="btn btn-primary" role="button">View</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            {% endfor %}
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if object_list.has_previous %}
+                        <a href="?page={{ object_list.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                    </span>
+
+                    {% if object_list.has_next %}
+                        <a href="?page={{ object_list.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
