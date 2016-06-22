@@ -17,7 +17,7 @@ verticies = (
     (1, -1, 1),
     (1, 1, 1),
     (-1, -1, 1),
-    (-1 , 1, 1),
+    (-1, 1, 1),
 )
 
 edges = (
@@ -54,28 +54,30 @@ colors = (
 )
 
 
-def Cube():
+def cube():
     glBegin(GL_QUADS)
     for x, surface in enumerate(surfaces):
         for y, vertex in enumerate(surface):
-            glColor3fv(colors[y])
+            #glColor3fv(colors[y])
             glVertex3fv(verticies[vertex])
     glEnd()
 
-    #glBegin(GL_LINES)
-    #for edge in edges:
-    #    for vertex in edge:
-    #        glVertex3fv(verticies[vertex])
-    #glEnd()
+    # glBegin(GL_LINES)
+    # for edge in edges:
+    #     for vertex in edge:
+    #         glVertex3fv(verticies[vertex])
+    # glEnd()
 
 
 def main():
+    clock = pygame.time.Clock()
+    
     pygame.init()
     display = (800, 600)
-    pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
+    pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
 
     gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
-    glTranslate(0.0, 0.0, -5)
+    glTranslate(0.0, 0.0, -15)
 
     glRotatef(0, 0, 0, 0)
 
@@ -84,14 +86,14 @@ def main():
             if e.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+        
+        glRotate(1, 3, 1, 1)
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-        #glRotate(1, 3, 1, 1)
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-        Cube()
+        cube()
+        
         pygame.display.flip()
-        pygame.time.wait(10)
-
+        clock.tick()
+        print("fps:", clock.get_fps())
 
 main()
-
-
