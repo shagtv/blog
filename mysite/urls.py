@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^', include("posts.urls", namespace='posts')),
     url(r'^', include("personal.urls")),
+    url(r'^blog/', include("blog.urls")),
 ]
 
 #if settings.DEBUG:
