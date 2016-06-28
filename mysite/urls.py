@@ -25,6 +25,7 @@ urlpatterns = [
     #url(r'^', include("posts.urls", namespace='posts')),
     url(r'^', include("personal.urls")),
     url(r'^blog/', include("blog.urls")),
+    url(r'^pin/', include("pin.urls")),
 ]
 
 #if settings.DEBUG:

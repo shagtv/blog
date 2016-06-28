@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'posts',
     'personal',
+    'blog',
+    'pin',
 ]
 
 MIDDLEWARE_CLASSES = [
