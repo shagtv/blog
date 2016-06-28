@@ -2,6 +2,8 @@
 
 {% block content %}
     {% for post in object_list %}
-        <h5>{{ post.date|date:"Y-m-d" }}<a href="/blog/ "></a> </h5>
+        <h5>{{ post.date|date:"Y-m-d" }} <a href="/blog/ ">{{ post.title }}</a></h5>
+        <p>{{ post.body }}</p>
+        <hr/>
     {% endfor %}
 {% endblock %}
