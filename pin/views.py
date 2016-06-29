@@ -13,4 +13,4 @@ def index(request):
         instance.save()
         messages.success(request, "Successfully created")
         return HttpResponseRedirect(instance.get_absolute_url())
-    return render(request, 'pin/index.html')
+    return render(request, 'pin/index.html', {"form": form})
