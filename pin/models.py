@@ -45,3 +45,19 @@ class Log(models.Model):
     pin = models.ForeignKey(Pin)
     datetime = models.DateTimeField(auto_now=False, auto_now_add=True)
     user = models.ForeignKey(User)
+
+
+class Item(models.Model):
+    title = models.CharField(max_length=255)
+    ingameid = models.IntegerField(null=False)
+
+    def __str__(self):
+        return self.title
+
+
+class Bonus(models.Model):
+    type = models.ForeignKey(Type)
+    item = models.ForeignKey(Item)
+
+    def __str__(self):
+        return '%s %s' % (self.type, self.item)
